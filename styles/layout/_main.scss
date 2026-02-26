@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--surface-ground);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+/* Custom style for the Panel header */
+.custom-panel .p-panel-header {
+    background-color: #698ECE; /* Your desired color */
+    color: white; /* Text color for contrast */
+}
+
+.mousePointer {
+    cursor: pointer; /* Changes cursor to pointer */
+}
+
+.custom-card .p-card-header img {
+    cursor: pointer; /* Changes cursor to pointer */
+    width: 100%;
+    height: auto;
+} 
+
+.floating-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.floating-menu .p-menu {
+    margin: 0;
+}
+
+.floating-menu .p-menuitem-link {
+    display: flex;
+    align-items: center;
+}
+
+.floating-menu .p-menuitem-link .pi {
+    margin-right: 0.5em;
+}
+
+.auto-complete-max-width {
+    max-width: 350px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+}
+
+.product-item img {
+    border-radius: 4px;
+}
+ 
+/* Center the TabView container */
+.tabview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust as needed */
+}
+
+/* Optional: Center the text within the TabPanel */
+.p-tabview-panel {
+    text-align: center;
+}
