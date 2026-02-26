@@ -96,7 +96,7 @@ export default async function HomePage() {
 
       {/* Other Services & Links */}
       <section className="max-w-4xl mx-auto py-12 px-6">
-        <h2 className="text-2xl font-semibold mb-8 text-center">Other Services & Links</h2>
+        <h2 className="text-2xl font-semibold mb-8 text-center">Free to use projects</h2>
         <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
           <a
             href="https://ophiussa.eu"
@@ -166,7 +166,13 @@ export default async function HomePage() {
       <footer className="bg-gray-900 border-t border-gray-800 py-6">
         <div className="max-w-5xl mx-auto text-center text-sm text-gray-500">
           © {new Date().getFullYear()} Tiag0ss. All rights reserved.
+            <form action="https://www.paypal.com/donate" method="post" target="_blank" style={{ marginLeft: "20px" }} >
+                <input type="hidden" name="hosted_button_id" value="JBKGCMAWUWCCJ" />
+                <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif" name="submit" title="Donate to help continue doing free projects!" alt="Donate with PayPal button" />
+                <img alt="" src="https://www.paypal.com/en_PT/i/scr/pixel.gif" width="1" height="1" />
+            </form> 
         </div>
+        
       </footer>
     </main>
   );
