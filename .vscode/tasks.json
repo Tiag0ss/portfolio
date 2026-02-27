@@ -143,6 +143,17 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Next.js Static Export",
+			"type": "shell",
+			"command": "npm run build && npx next export",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }
