@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tiag0ss Portfolio",
   description: "Tiag0ss' personal portfolio showcasing projects, skills, and experience in software development.",
+  icons: {
+    icon: "/icons8-implant-96.png",
+    shortcut: "/icons8-implant-96.png",
+    apple: "/icons8-implant-96.png",
+  },
 };
 
 import { LayoutProvider } from '../layout/context/layoutcontext';
