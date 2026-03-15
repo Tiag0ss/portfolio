@@ -3,6 +3,7 @@ import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import '../styles/layout/layout.scss';
+import RepoGrid from './RepoGrid';
 
 const techStack = [
   { name: 'React', icon: '⚛️' },
@@ -69,21 +70,7 @@ const capabilities = [
   },
 ];
 
-export default async function HomePage() {
-  const res = await fetch('https://api.github.com/users/Tiag0ss/repos', {
-    headers: { 'User-Agent': 'Next.js Portfolio' },
-    next: { revalidate: 3600 },
-  });
-
-  const allRepos: Array<{
-    id: number;
-    name: string;
-    html_url: string;
-    description: string | null;
-    fork: boolean;
-  }> = res.ok ? await res.json() : [];
-
-  const repos = allRepos.filter((r) => !r.fork).slice(0, 6);
+export default function HomePage() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#05010e] text-slate-100 font-sans">
@@ -319,43 +306,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {repos.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {repos.map((repo, index) => (
-                <a
-                  key={repo.id}
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group relative overflow-hidden rounded-[1.75rem] border border-fuchsia-500/15 bg-[#090312]/85 p-6 shadow-[0_0_45px_rgba(15,23,42,0.7)] transition hover:-translate-y-1 hover:border-cyan-400/60 ${
-                    index === 0 ? 'xl:col-span-2' : index === 2 || index === 5 ? 'xl:-mt-4' : index === 4 ? 'xl:mt-6' : ''
-                  }`}
-                >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(217,70,239,0.18),transparent_30%)] opacity-80" />
-                  <div className="cyber-glow absolute left-6 top-0 h-px w-24 bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-                  <div className="relative z-10 flex h-full flex-col">
-                    <div className="mb-6 flex items-center justify-between">
-                      <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cyan-200">
-                        Repo
-                      </span>
-                      <span className="text-slate-500 transition group-hover:text-cyan-300">↗</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300">{repo.name}</h3>
-                    <p className="mt-4 min-h-[96px] text-sm leading-7 text-slate-400">
-                      {repo.description ?? 'Open-source work focused on utility, experimentation and continuous evolution.'}
-                    </p>
-                    <div className="mt-6 border-t border-white/10 pt-4 text-xs uppercase tracking-[0.3em] text-slate-500">
-                      GitHub archive node
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 text-center text-slate-400 backdrop-blur-2xl">
-              Repository data is temporarily offline. The visual shell is ready — the GitHub feed just needs a fresh signal.
-            </div>
-          )}
+          <RepoGrid />
         </section>
 
         <section className="mx-auto max-w-5xl px-6 py-12 lg:px-10">
@@ -385,21 +336,42 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <footer className="border-t border-white/10 bg-slate-950/80 px-6 py-8 backdrop-blur-2xl lg:px-10">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center text-sm text-slate-400 md:flex-row md:text-left">
-            <div>
-              © {new Date().getFullYear()} Tiag0ss. All rights reserved.
+        <footer className="px-6 pb-10 pt-4 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="cyber-panel relative overflow-hidden rounded-[1.75rem] px-6 py-6 sm:px-8 sm:py-7">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-400/80 to-transparent" />
+              <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-cyan-400/50 to-transparent" />
+              <div className="absolute -right-10 top-1/2 h-24 w-24 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+
+              <div className="relative z-10 grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-fuchsia-200/80">Archive footer</p>
+                  <div className="mt-3 flex flex-col gap-3">
+                    <div>
+                      <p className="text-lg font-semibold text-white">Tiag0ss // open-source archive</p>
+                      <p className="mt-1 text-sm leading-7 text-slate-400">
+                        © {new Date().getFullYear()} Tiag0ss. Public builds, bots and experiments kept online.
+                      </p>
+                    </div> 
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-center gap-3 md:ml-auto md:items-end md:border-l md:border-fuchsia-500/10 md:pl-10 lg:pl-14">
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-slate-500">Support free projects</p>
+                  <form action="https://www.paypal.com/donate" method="post" target="_blank" className="w-full md:w-auto">
+                    <input type="hidden" name="hosted_button_id" value="JBKGCMAWUWCCJ" />
+                    <button
+                      type="submit"
+                      className="inline-flex w-full min-w-[220px] items-center justify-center gap-3 rounded-xl border border-fuchsia-400/40 bg-gradient-to-r from-fuchsia-500/20 to-cyan-500/20 px-5 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_0_30px_rgba(217,70,239,0.16)] transition hover:-translate-y-0.5 hover:border-cyan-300/60 hover:shadow-[0_0_36px_rgba(34,211,238,0.18)] md:w-auto"
+                      title="Donate to help continue doing free projects!"
+                    >
+                      <span className="text-fuchsia-300">◈</span>
+                      Donate
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
-            <form action="https://www.paypal.com/donate" method="post" target="_blank" className="inline-flex items-center justify-center">
-              <input type="hidden" name="hosted_button_id" value="JBKGCMAWUWCCJ" />
-              <input
-                type="image"
-                src="https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif"
-                name="submit"
-                title="Donate to help continue doing free projects!"
-                alt="Donate with PayPal button"
-              />
-            </form>
           </div>
         </footer>
       </div>
