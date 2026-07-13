@@ -37,15 +37,17 @@ const spotlightProjects = [
     href: 'https://ophiussa.eu',
     icon: '🎮',
     description: 'A bot and platform built to track new releases and keep gaming communities updated in real time.',
+    cta: 'Open project',
     accent: 'from-cyan-500/20 via-blue-500/10 to-transparent',
     border: 'border-cyan-500/30 hover:border-cyan-300/80',
     glow: 'shadow-cyan-500/20',
   },
   {
-    name: 'LoquentiaBot',
-    href: 'https://loquentiabot.com',
-    icon: '🤖',
-    description: 'A Twitch bot project focused on interaction, utility and experiments around live communities.',
+    name: 'Project Management',
+    href: 'https://pmdemo.tiag0ss.dev',
+    icon: '📋',
+    description: 'Live demo of a project management app. Credentials: admin / admin1',
+    cta: 'Open demo',
     accent: 'from-fuchsia-500/20 via-violet-500/10 to-transparent',
     border: 'border-fuchsia-500/30 hover:border-fuchsia-300/80',
     glow: 'shadow-fuchsia-500/20',
@@ -254,7 +256,7 @@ export default function HomePage() {
                     <h3 className="text-2xl font-bold text-white">{project.name}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-300">{project.description}</p>
                     <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/90">
-                      Open project
+                      {project.cta}
                       <span className="transition group-hover:translate-x-1">→</span>
                     </span>
                   </div>

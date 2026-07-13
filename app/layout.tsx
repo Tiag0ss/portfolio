@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -16,9 +10,9 @@ export const metadata: Metadata = {
   title: "Tiag0ss Portfolio",
   description: "Tiag0ss' personal portfolio showcasing projects, skills, and experience in software development.",
   icons: {
-    icon: "/icons8-implant-96.png",
-    shortcut: "/icons8-implant-96.png",
-    apple: "/icons8-implant-96.png",
+    icon: "/icons8-portfolio-96.png",
+    shortcut: "/icons8-portfolio-96.png",
+    apple: "/icons8-portfolio-96.png",
   },
 };
 
@@ -32,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <PrimeReactProvider>
           <LayoutProvider>{children}</LayoutProvider>
         </PrimeReactProvider>
