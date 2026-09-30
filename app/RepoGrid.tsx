@@ -61,7 +61,7 @@ export default function RepoGrid() {
 
   if (loading) {
     return (
-      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 text-center text-slate-400 backdrop-blur-2xl">
+      <div className="rounded-xl border border-[var(--line)] bg-[var(--bg-elevated)] p-8 text-center text-sm text-[var(--muted)]">
         Loading repositories...
       </div>
     );
@@ -69,41 +69,34 @@ export default function RepoGrid() {
 
   if (repos.length === 0) {
     return (
-      <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 text-center text-slate-400 backdrop-blur-2xl">
-        Repository data is temporarily offline. The visual shell is ready — the GitHub feed just needs a fresh signal.
+      <div className="rounded-xl border border-[var(--line)] bg-[var(--bg-elevated)] p-8 text-center text-sm text-[var(--muted)]">
+        Repository data is temporarily offline. Try again shortly.
       </div>
     );
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {repos.map((repo, index) => (
+    <div className="card-list">
+      {repos.map((repo) => (
         <a
           key={repo.id}
           href={repo.html_url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group relative overflow-hidden rounded-[1.75rem] border border-fuchsia-500/15 bg-[#090312]/85 p-6 shadow-[0_0_45px_rgba(15,23,42,0.7)] transition hover:-translate-y-1 hover:border-cyan-400/60 ${
-            index === 0 ? 'xl:col-span-2' : index === 2 || index === 5 ? 'xl:-mt-4' : index === 4 ? 'xl:mt-6' : ''
-          }`}
+          className="group flex min-h-[180px] flex-col rounded-xl border border-[var(--line)] bg-[var(--bg-elevated)] p-5 transition hover:border-[var(--accent)]/35 hover:bg-white/[0.03]"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(217,70,239,0.18),transparent_30%)] opacity-80" />
-          <div className="cyber-glow absolute left-6 top-0 h-px w-24 bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-          <div className="relative z-10 flex h-full flex-col">
-            <div className="mb-6 flex items-center justify-between">
-              <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cyan-200">
-                Repo
-              </span>
-              <span className="text-slate-500 transition group-hover:text-cyan-300">↗</span>
-            </div>
-            <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300">{repo.name}</h3>
-            <p className="mt-4 min-h-[96px] text-sm leading-7 text-slate-400">
-              {repo.description ?? 'Open-source work focused on utility, experimentation and continuous evolution.'}
-            </p>
-            <div className="mt-6 border-t border-white/10 pt-4 text-xs uppercase tracking-[0.3em] text-slate-500">
-              GitHub archive node
-            </div>
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="font-display text-lg font-semibold text-white transition group-hover:text-[var(--accent)]">
+              {repo.name}
+            </h3>
+            <span className="shrink-0 text-[var(--muted)] transition group-hover:text-[var(--accent)]" aria-hidden="true">
+              ↗
+            </span>
           </div>
+          <p className="mt-3 flex-1 text-sm leading-6 text-[var(--muted)]">
+            {repo.description ?? 'Open-source work focused on utility, experimentation and continuous evolution.'}
+          </p>
+          <p className="mt-5 text-xs uppercase tracking-[0.18em] text-[var(--muted)]/80">GitHub</p>
         </a>
       ))}
     </div>

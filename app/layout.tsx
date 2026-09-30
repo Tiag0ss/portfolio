@@ -1,23 +1,29 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Instrument_Sans, Syne } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({
-  subsets: ["latin"],
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Tiag0ss Portfolio",
-  description: "Tiag0ss' personal portfolio showcasing projects, skills, and experience in software development.",
+  title: 'Tiag0ss — Portfolio',
+  description:
+    "Tiag0ss' personal portfolio showcasing open-source projects, tools, and experiments in software development.",
   icons: {
-    icon: "/icons8-portfolio-96.png",
-    shortcut: "/icons8-portfolio-96.png",
-    apple: "/icons8-portfolio-96.png",
+    icon: '/icons8-portfolio-96.png',
+    shortcut: '/icons8-portfolio-96.png',
+    apple: '/icons8-portfolio-96.png',
   },
 };
-
-import { LayoutProvider } from '../layout/context/layoutcontext';
-import { PrimeReactProvider } from 'primereact/api';
 
 export default function RootLayout({
   children,
@@ -25,12 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <PrimeReactProvider>
-          <LayoutProvider>{children}</LayoutProvider>
-        </PrimeReactProvider>
-      </body>
+    <html lang="en" className={`${instrumentSans.variable} ${syne.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
