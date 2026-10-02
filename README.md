@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Alt](https://repobeats.axiom.co/api/embed/0c065bd17532cfffa71e9ed77d729d61be6c4ac7.svg "Repobeats analytics image")
 
 ## Getting Started
 
